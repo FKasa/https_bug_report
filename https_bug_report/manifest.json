@@ -1,0 +1,21 @@
+{
+  "name": "https_bug_report",
+  "version": "0.0.46",
+  "manifest_version": 2,
+  "description": "This demo extension has been created solely to test for a bug in the way chrome hanldes requests with chrome.webRequest",
+  "browser_action": {
+    "default_title": "https_bug_report",
+    "default_popup": "src/browser_action/browser_action.html"
+  },
+  "background": {
+    "scripts": ["src/inject/block.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "contentSettings",
+    "tabs",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ]
+}

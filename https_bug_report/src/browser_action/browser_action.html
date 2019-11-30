@@ -1,0 +1,36 @@
+<!doctype html>
+<style type="text/css">
+	#mainPopup {
+		padding: 10px;
+		height: 200px;
+		width: 700px;
+		font-family: Helvetica, Ubuntu, Arial, sans-serif;
+	}
+	h1 {
+		font-size: 2em;
+	}
+</style>
+
+<div id="mainPopup">
+<h1>Bug demo extension</h1>
+<p>This demo extension has been created solely to test for a bug in the way chrome hanldes requests with chrome.webRequest</p>
+<p>Link to test: <a href="https://account.lycamobile.mk/quicktopup-direct.aspx?lang=en">test page</a></p>
+<p>Steps to easily reproduce the bug:</p>
+<ol>
+	<li>disable this extention (if already installed)</li>
+	<li>open the page from the link above</li>
+	<li>open the Chrome Dev tools for that page and switch to the Network tab (clear the log if needed)</li>
+	<li>Install this extension, enable if already installed</li>
+	<li>Open the Chrome Dev tools inpector for the background page of the extension (it should say "https_bug_report loaded")</li>
+	<li>go to page you opened from the link above (dev tools should be open there as well)</li>
+	<li>open the filter menu by clicking the funnel icon</li>
+	<li>write "angular-" whithout the quotes there in the filter field</li>
+	<li>clear the network log by clicking the stop sign next to the funnel icon</li>
+	<li>press and hold the refresh button, move to the "empty cache and hard reload" option and release</li>
+	<li>once the page has finished loading, you should see four files in the log - one in red</li>
+	<li>in the console of the background page however, there are only entries for three files</li>
+	<li>there isn't even an loadding error reported by onErrorOccurred</li>
+</ol>
+<h1>Conclusion</h1>
+<p>Requests towards http source requested on https pages are completely innaccessible by extension. I understand the security reasons for blocking them. The extension I was trying to build was solving this exact issue: switching from http to https for sources that are known to have the secure version available.</p>
+</div>
